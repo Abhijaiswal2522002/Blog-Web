@@ -1,4 +1,57 @@
 ﻿@page
 @model Blog_Web.Pages.Blog.DashboardModel
 @{
+    ViewData["Title"] = "Dashboard";
+}
+
+<h1>Welcome, @Model.DashboardViewModel.Username!</h1>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>Your Blog Posts</h2>
+            <a asp-page="/Blog/AddPost" class="btn btn-primary">Create New Post</a>
+        </div>
+
+        @if (Model.DashboardViewModel.Posts.Any())
+        {
+            <div class="row">
+                @foreach (var post in Model.DashboardViewModel.Posts)
+                {
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">@post.Title</h5>
+                                <p class="card-text">@(post.Content.Length > 150 ? post.Content.Substring(0, 150) + "..." : post.Content)</p>
+                                <p class="card-text"><small class="text-muted">Created: @post.CreatedAt.ToString("MMM dd, yyyy")</small></p>
+                                @if (post.UpdatedAt.HasValue)
+                                {
+                                    <p class="card-text"><small class="text-muted">Updated: @post.UpdatedAt.Value.ToString("MMM dd, yyyy")</small></p>
+                                }
+                            </div>
+                            <div class="card-footer">
+                                <a asp-page="/Blog/EditPost" asp-route-id="@post.Id" class="btn btn-outline-primary btn-sm">Edit</a>
+                                <form method="post" asp-page-handler="Delete" style="display: inline;">
+                                    <input type="hidden" name="id" value="@post.Id" />
+                                    <button type="submit" class="btn btn-outline-danger btn-sm" onclick="return confirm('Are you sure you want to delete this post?')">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <div class="text-center mt-5">
+                <h3>No posts yet</h3>
+                <p>Get started by creating your first blog post!</p>
+                <a asp-page="/Blog/AddPost" class="btn btn-primary">Create Your First Post</a>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/Blog/dashboard.js"></script>
 }

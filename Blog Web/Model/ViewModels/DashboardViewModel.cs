@@ -2,7 +2,7 @@
 {
     public class DashboardViewModel
     {
-        public string Username { get; set; }
-        public List<BlogPost> Posts { get; set; }
+        public required string Username { get; set; }
+        public required List<BlogPost> Posts { get; set; }
     }
 }

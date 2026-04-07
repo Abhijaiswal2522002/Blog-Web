@@ -269,10 +269,21 @@ D:\Dot Net\repos\Blog Web\Blog Web\obj\Debug\net8.0\staticwebassets.build.json
 D:\Dot Net\repos\Blog Web\Blog Web\obj\Debug\net8.0\staticwebassets.build.json.cache
 D:\Dot Net\repos\Blog Web\Blog Web\obj\Debug\net8.0\staticwebassets.development.json
 D:\Dot Net\repos\Blog Web\Blog Web\obj\Debug\net8.0\staticwebassets.build.endpoints.json
-D:\Dot Net\repos\Blog Web\Blog Web\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 D:\Dot Net\repos\Blog Web\Blog Web\obj\Debug\net8.0\Blog Web.csproj.Up2Date
 D:\Dot Net\repos\Blog Web\Blog Web\obj\Debug\net8.0\Blog Web.dll
 D:\Dot Net\repos\Blog Web\Blog Web\obj\Debug\net8.0\refint\Blog Web.dll
 D:\Dot Net\repos\Blog Web\Blog Web\obj\Debug\net8.0\Blog Web.pdb
 D:\Dot Net\repos\Blog Web\Blog Web\obj\Debug\net8.0\Blog Web.genruntimeconfig.cache
 D:\Dot Net\repos\Blog Web\Blog Web\obj\Debug\net8.0\ref\Blog Web.dll
+D:\Dot Net\repos\Blog Web\Blog Web\obj\Debug\net8.0\Blog Web.sourcelink.json
+D:\Dot Net\repos\Blog Web\Blog Web\bin\Debug\net8.0\BCrypt.Net-Next.dll
+D:\Dot Net\repos\Blog Web\Blog Web\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\Dot Net\repos\Blog Web\Blog Web\bin\Debug\net8.0\Microsoft.Extensions.Diagnostics.Abstractions.dll
+D:\Dot Net\repos\Blog Web\Blog Web\bin\Debug\net8.0\Microsoft.Extensions.Hosting.Abstractions.dll
+D:\Dot Net\repos\Blog Web\Blog Web\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+D:\Dot Net\repos\Blog Web\Blog Web\bin\Debug\net8.0\Microsoft.Extensions.ObjectPool.dll
+D:\Dot Net\repos\Blog Web\Blog Web\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
+D:\Dot Net\repos\Blog Web\Blog Web\bin\Debug\net8.0\Microsoft.Extensions.WebEncoders.dll
+D:\Dot Net\repos\Blog Web\Blog Web\bin\Debug\net8.0\System.Security.Cryptography.Pkcs.dll
+D:\Dot Net\repos\Blog Web\Blog Web\bin\Debug\net8.0\System.Security.Cryptography.Xml.dll
+D:\Dot Net\repos\Blog Web\Blog Web\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Security.Cryptography.Pkcs.dll

@@ -1,4 +1,56 @@
-﻿@page
+﻿@page "{id:int}"
 @model Blog_Web.Pages.Blog.EditPostModel
 @{
+    ViewData["Title"] = "Edit Post";
+}
+
+<h1>Edit Blog Post</h1>
+
+<div class="row">
+    <div class="col-md-8">
+        <form method="post">
+            <input type="hidden" name="id" value="@ViewData["PostId"]" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="EditPostViewModel.Title"></label>
+                <input asp-for="EditPostViewModel.Title" class="form-control" placeholder="Enter an engaging title..." />
+                <small id="titleCounter" class="form-text text-muted"></small>
+                <span asp-validation-for="EditPostViewModel.Title" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="EditPostViewModel.Content"></label>
+                <textarea asp-for="EditPostViewModel.Content" class="form-control" rows="15" placeholder="Write your blog post content here..."></textarea>
+                <small id="contentCounter" class="form-text text-muted"></small>
+                <span asp-validation-for="EditPostViewModel.Content" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Update Post</button>
+                <a asp-page="/Blog/Dashboard" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5>Editing Tips</h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-unstyled">
+                    <li><i class="fas fa-edit text-info"></i> Make your title more engaging</li>
+                    <li><i class="fas fa-edit text-info"></i> Improve the content flow</li>
+                    <li><i class="fas fa-edit text-info"></i> Add more details or examples</li>
+                    <li><i class="fas fa-edit text-info"></i> Check for grammar and spelling</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/Blog/editpost.js"></script>
 }
