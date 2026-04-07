@@ -1,0 +1,30 @@
+# Connection strings and sensitive configuration
+appsettings.json
+appsettings.*.json
+appsettings.Development.json
+
+# Build outputs
+bin/
+obj/
+
+# IDE
+.vs/
+.vscode/
+*.user
+*.suo
+*.sln.docstates
+
+# Visual Studio
+.idea/
+
+# User-specific files
+*.swp
+*.swo
+*~
+
+# Dependencies
+packages/
+.nuget/
+
+# Generated files
+*.log
