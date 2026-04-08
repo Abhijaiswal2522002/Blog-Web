@@ -1,4 +1,4 @@
-﻿$(document).ready(function () {
+$(document).ready(function () {
     // Character counter for title
     $('#EditPostViewModel_Title').on('input', function () {
         var length = $(this).val().length;
@@ -45,6 +45,11 @@
         if (hasChanges) {
             return 'You have unsaved changes. Are you sure you want to leave?';
         }
+    });
+
+    // Reset hasChanges on submit to prevent warning
+    $('form').on('submit', function () {
+        hasChanges = false;
     });
 
     // Confirm discard changes

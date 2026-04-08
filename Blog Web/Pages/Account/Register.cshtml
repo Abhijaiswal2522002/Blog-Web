@@ -1,53 +1,70 @@
-﻿@page
+@page
 @model Blog_Web.Pages.Account.RegisterModel
 @{
     ViewData["Title"] = "Register";
 }
 
-<h1>Register</h1>
-
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-            <div class="form-group">
-                <label asp-for="RegisterViewModel.Username"></label>
-                <input asp-for="RegisterViewModel.Username" class="form-control" />
-                <span asp-validation-for="RegisterViewModel.Username" class="text-danger"></span>
-                <div id="username-availability" class="small mt-1"></div>
+<div class="row justify-content-center mt-5 mb-5">
+    <div class="col-md-6 col-lg-5">
+        <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+            <div class="card-header bg-success text-white text-center py-4 border-0">
+                <i class="bi bi-person-plus-fill display-4 mb-2 d-block"></i>
+                <h2 class="fw-bold mb-0">Join Blog Web</h2>
+                <p class="mb-0 opacity-75">Start sharing your stories today</p>
             </div>
+            <div class="card-body p-4 p-md-5">
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger py-2 small" role="alert"></div>
 
-            <div class="form-group">
-                <label asp-for="RegisterViewModel.Email"></label>
-                <input asp-for="RegisterViewModel.Email" class="form-control" />
-                <span asp-validation-for="RegisterViewModel.Email" class="text-danger"></span>
-                <div id="email-availability" class="small mt-1"></div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="RegisterViewModel.Username" class="form-control rounded-3" id="floatingUsername" placeholder="Username" />
+                        <label asp-for="RegisterViewModel.Username"><i class="bi bi-person me-2"></i> Username</label>
+                        <span asp-validation-for="RegisterViewModel.Username" class="text-danger small"></span>
+                        <div id="username-availability" class="small mt-1 px-2"></div>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input asp-for="RegisterViewModel.Email" class="form-control rounded-3" id="floatingEmail" placeholder="name@example.com" />
+                        <label asp-for="RegisterViewModel.Email"><i class="bi bi-envelope me-2"></i> Email address</label>
+                        <span asp-validation-for="RegisterViewModel.Email" class="text-danger small"></span>
+                        <div id="email-availability" class="small mt-1 px-2"></div>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input asp-for="RegisterViewModel.Password" type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Password" />
+                        <label asp-for="RegisterViewModel.Password"><i class="bi bi-lock me-2"></i> Password</label>
+                        <span asp-validation-for="RegisterViewModel.Password" class="text-danger small"></span>
+                        <div class="px-2 mt-1">
+                            <div id="password-strength" class="small"></div>
+                            <div id="password-feedback" class="small text-muted mt-1"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-floating mb-4">
+                        <input asp-for="RegisterViewModel.ConfirmPassword" type="password" class="form-control rounded-3" id="floatingConfirmPassword" placeholder="Confirm Password" />
+                        <label asp-for="RegisterViewModel.ConfirmPassword"><i class="bi bi-shield-check me-2"></i> Confirm Password</label>
+                        <span asp-validation-for="RegisterViewModel.ConfirmPassword" class="text-danger small"></span>
+                        <div id="confirm-password-match" class="small mt-1 px-2"></div>
+                    </div>
+
+                    <div class="d-grid gap-2 mb-3">
+                        <button type="submit" class="btn btn-success btn-lg rounded-3 py-2 shadow-sm fw-bold">Create Account</button>
+                    </div>
+                </form>
+
+                <div class="text-center mt-4">
+                    <p class="text-muted small">Already have an account? <a asp-page="/Account/Login" class="fw-bold text-decoration-none text-success">Sign in</a></p>
+                </div>
             </div>
-
-            <div class="form-group">
-                <label asp-for="RegisterViewModel.Password"></label>
-                <input asp-for="RegisterViewModel.Password" class="form-control" />
-                <span asp-validation-for="RegisterViewModel.Password" class="text-danger"></span>
-                <div id="password-strength" class="small mt-1"></div>
-                <div id="password-feedback" class="small text-muted mt-1"></div>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="RegisterViewModel.ConfirmPassword"></label>
-                <input asp-for="RegisterViewModel.ConfirmPassword" class="form-control" />
-                <span asp-validation-for="RegisterViewModel.ConfirmPassword" class="text-danger"></span>
-                <div id="confirm-password-match" class="small mt-1"></div>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Register</button>
-        </form>
+        </div>
+        
+        <div class="text-center mt-4 mb-5">
+            <a asp-page="/Index" class="btn btn-link text-muted text-decoration-none small">
+                <i class="bi bi-arrow-left me-1"></i> Back to Homepage
+            </a>
+        </div>
     </div>
 </div>
-
-<p>
-    <a asp-page="/Account/Login">Already have an account? Login here.</a>
-</p>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

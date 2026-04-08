@@ -1,4 +1,4 @@
-﻿@page
+@page
 @model Blog_Web.Pages.Blog.DashboardModel
 @{
     ViewData["Title"] = "Dashboard";
@@ -10,7 +10,17 @@
     <div class="col-md-12">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h2>Your Blog Posts</h2>
-            <a asp-page="/Blog/AddPost" class="btn btn-primary">Create New Post</a>
+            <div class="d-flex gap-2">
+                <form method="get" class="d-flex gap-2">
+                    <input type="text" name="SearchTerm" value="@Model.SearchTerm" class="form-control" placeholder="Search posts..." aria-label="Search posts">
+                    <button type="submit" class="btn btn-outline-secondary">Search</button>
+                    @if (!string.IsNullOrEmpty(Model.SearchTerm))
+                    {
+                        <a asp-page="/Blog/Dashboard" class="btn btn-link text-decoration-none">Clear</a>
+                    }
+                </form>
+                <a asp-page="/Blog/AddPost" class="btn btn-primary">Create New Post</a>
+            </div>
         </div>
 
         @if (Model.DashboardViewModel.Posts.Any())
@@ -31,10 +41,7 @@
                             </div>
                             <div class="card-footer">
                                 <a asp-page="/Blog/EditPost" asp-route-id="@post.Id" class="btn btn-outline-primary btn-sm">Edit</a>
-                                <form method="post" asp-page-handler="Delete" style="display: inline;">
-                                    <input type="hidden" name="id" value="@post.Id" />
-                                    <button type="submit" class="btn btn-outline-danger btn-sm" onclick="return confirm('Are you sure you want to delete this post?')">Delete</button>
-                                </form>
+                                <button type="button" class="btn btn-outline-danger btn-sm delete-post-btn" data-bs-toggle="modal" data-bs-target="#deletePostModal" data-post-id="@post.Id" data-post-title="@post.Title">Delete</button>
                             </div>
                         </div>
                     </div>
@@ -49,6 +56,28 @@
                 <a asp-page="/Blog/AddPost" class="btn btn-primary">Create Your First Post</a>
             </div>
         }
+    </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deletePostModal" tabindex="-1" aria-labelledby="deletePostModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deletePostModalLabel">Confirm Delete</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete the post "<span id="deletePostTitle"></span>"? This action cannot be undone.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <form method="post" asp-page-handler="Delete" id="deletePostForm">
+                    <input type="hidden" name="id" id="deletePostId" />
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 

@@ -1,4 +1,4 @@
-﻿$(document).ready(function () {
+$(document).ready(function () {
     // Auto-save draft functionality
     var autoSaveTimer;
     var hasUnsavedChanges = false;
@@ -76,6 +76,7 @@
 
     // Clear draft on successful submit
     $('form').on('submit', function () {
+        hasUnsavedChanges = false;
         localStorage.removeItem('blogDraft_title');
         localStorage.removeItem('blogDraft_content');
         localStorage.removeItem('blogDraft_time');

@@ -1,10 +1,84 @@
-﻿@page
+@page
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container mt-4">
+    <div class="row mb-5 text-center">
+        <div class="col-12">
+            <h1 class="display-4 fw-bold">Blog Web</h1>
+            <p class="lead">Explore the latest thoughts and stories from our community.</p>
+        </div>
+    </div>
+
+    <div class="row mb-4 justify-content-center">
+        <div class="col-md-8">
+            <form method="get" class="d-flex gap-2">
+                <input type="text" name="SearchTerm" value="@Model.SearchTerm" class="form-control form-control-lg shadow-sm" placeholder="Search for posts..." aria-label="Search posts">
+                <button type="submit" class="btn btn-primary btn-lg shadow-sm">Search</button>
+                @if (!string.IsNullOrEmpty(Model.SearchTerm))
+                {
+                    <a asp-page="/Index" class="btn btn-outline-secondary btn-lg shadow-sm">Clear</a>
+                }
+            </form>
+        </div>
+    </div>
+
+    @if (Model.Posts.Any())
+    {
+        <div class="row">
+            @foreach (var post in Model.Posts)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 border-0 shadow-sm post-card">
+                        <div class="card-body">
+                            <h3 class="card-title h4">@post.Title</h3>
+                            <p class="card-text text-muted">
+                                @(post.Content.Length > 120 ? post.Content.Substring(0, 120) + "..." : post.Content)
+                            </p>
+                        </div>
+                        <div class="card-footer bg-transparent border-0 pt-0 pb-4 px-4">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="text-muted small">
+                                    <i class="bi bi-person"></i> @(post.User?.Username ?? "Anonymous")
+                                </div>
+                                <div class="text-muted small">
+                                    <i class="bi bi-calendar"></i> @post.CreatedAt.ToString("MMM dd, yyyy")
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="text-center py-5">
+            <div class="mb-4">
+                <i class="bi bi-search display-1 text-muted"></i>
+            </div>
+            <h3 class="text-muted">No posts found</h3>
+            @if (!string.IsNullOrEmpty(Model.SearchTerm))
+            {
+                <p>Try different keywords or <a asp-page="/Index">clear your search</a>.</p>
+            }
+            else
+            {
+                <p>Be the first to share your story!</p>
+                <a asp-page="/Blog/AddPost" class="btn btn-primary">Create Your First Post</a>
+            }
+        </div>
+    }
 </div>
+
+<style>
+    .post-card {
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    }
+    .post-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+    }
+</style>

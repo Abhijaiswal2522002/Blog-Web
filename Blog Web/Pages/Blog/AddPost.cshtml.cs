@@ -48,6 +48,8 @@ namespace Blog_Web.Pages.Blog
             _context.BlogPost.Add(post);
             await _context.SaveChangesAsync();
 
+            TempData["SuccessMessage"] = "Your post has been created successfully!";
+
             return RedirectToPage("/Blog/Dashboard");
         }
     }

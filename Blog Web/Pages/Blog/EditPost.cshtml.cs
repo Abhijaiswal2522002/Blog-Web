@@ -71,6 +71,8 @@ namespace Blog_Web.Pages.Blog
             _context.BlogPost.Update(post);
             await _context.SaveChangesAsync();
 
+            TempData["SuccessMessage"] = "Your post has been updated successfully!";
+
             return RedirectToPage("/Blog/Dashboard");
         }
     }

@@ -18,6 +18,9 @@ namespace Blog_Web.Pages.Blog
             _context = context;
         }
 
+        [BindProperty(SupportsGet = true)]
+        public string? SearchTerm { get; set; }
+
         public required DashboardViewModel DashboardViewModel { get; set; }
 
         public async Task<IActionResult> OnGetAsync()
@@ -28,10 +31,16 @@ namespace Blog_Web.Pages.Blog
                 return RedirectToPage("/Account/Login");
             }
 
-            var user = await _context.Users
-                .Include(u => u.BlogPosts)
-                .FirstOrDefaultAsync(u => u.Id == userId);
+            var query = _context.BlogPost.Where(p => p.UserId == userId);
 
+            if (!string.IsNullOrEmpty(SearchTerm))
+            {
+                query = query.Where(p => p.Title.Contains(SearchTerm) || p.Content.Contains(SearchTerm));
+            }
+
+            var posts = await query.OrderByDescending(p => p.CreatedAt).ToListAsync();
+
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == userId);
             if (user == null)
             {
                 return RedirectToPage("/Account/Login");
@@ -40,7 +49,7 @@ namespace Blog_Web.Pages.Blog
             DashboardViewModel = new DashboardViewModel
             {
                 Username = user.Username,
-                Posts = user.BlogPosts.OrderByDescending(p => p.CreatedAt).ToList()
+                Posts = posts
             };
 
             return Page();
